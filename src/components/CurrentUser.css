@@ -1,6 +1,7 @@
 .CurrentUser{
   padding: 1rem 2rem;
   max-width: 760px;
+  flex: 1;
 }
 
 .CurrentUser h3{

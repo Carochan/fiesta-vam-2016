@@ -2,6 +2,16 @@ import React from 'react'
 import './CurrentUser.css'
 import Gravatar from 'react-gravatar'
 
+const createLinkFromUrlText = (string) => {
+  const urls = string.split(', ')
+  return urls.map((url, key) =>
+    <span key={key}>
+      <a href={'http://' + url} target="_blank">{url}</a>
+      {urls.length - 1 === key ? '' : ', '}
+    </span>
+  )
+}
+
 const CurrentUser = (props) => (
   <div className="CurrentUser">
     <h1>{props.user.name}</h1>
@@ -12,7 +22,7 @@ const CurrentUser = (props) => (
           <p><i className="fa fa-envelope-o"></i> {props.user.email}</p>
         }
         {props.user.web &&
-          <p><i className="fa fa-rss"></i> <a href={'http://' + props.user.web} target="_blank">{props.user.web}</a></p>
+          <p><i className="fa fa-rss"></i> {createLinkFromUrlText(props.user.web)}</p>
         }
         {props.user.residencia &&
           <p><i className="fa fa-globe"></i> {props.user.residencia}</p>

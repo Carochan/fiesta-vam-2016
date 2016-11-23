@@ -1,6 +1,7 @@
 import $ from 'jquery'
 import React, { Component } from 'react'
 import './App.css'
+import Home from './components/Home'
 import CurrentUser from './components/CurrentUser'
 import Footer from './components/Footer'
 
@@ -59,10 +60,21 @@ class App extends Component {
     return this.state.users.find( user => user.name === username )
   }
 
+  goHome() {
+    this.setState({
+      currentUser: {}
+    })
+  }
+
   render() {
+    const currentUserOrIndex = Object.keys(this.state.currentUser).length === 0 ? <Home /> : <CurrentUser user={this.state.currentUser} />
+
     return (
       <div className="App">
         <div className="UsersList">
+          <ul>
+            <li onClick={this.goHome.bind(this)}>Inicio</li>
+          </ul>
           <h2 className="UsersList-header">
             Asistentes
             <small>({this.state.users.length})</small>
@@ -74,7 +86,7 @@ class App extends Component {
           </ul>
         </div>
         <div className="Content">
-          <CurrentUser user={this.state.currentUser} />
+          {currentUserOrIndex}
           <Footer />
         </div>
       </div>
