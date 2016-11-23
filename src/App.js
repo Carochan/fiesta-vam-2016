@@ -1,6 +1,8 @@
 import $ from 'jquery'
 import React, { Component } from 'react'
 import './App.css'
+import CurrentUser from './components/CurrentUser'
+import Footer from './components/Footer'
 
 const dataUrl = 'https://spreadsheets.google.com/feeds/list/1XgtlE6jAFpKI5WJQRcWwMhOCZFmQG7WWgtYy_8Gekq0/od6/public/values?alt=json'
 
@@ -17,42 +19,17 @@ const setUsersInfo = (data) => {
       f: user['gsx$desdecuándovasaestarenmadrid'].$t,
       descripcion: user['gsx$quédeberíansaberelrestodeasistentessobreticuéntalesquiéneresaquétededicasquéesloquetegustaenquéproyectosestástrabajandoactualmentecuálessontussúper-poderesytodoloqueseteocurra'].$t,
       conocer: user['gsx$aquétipodepersonastegustaríaconocer'].$t,
-      i: user['gsx$sobrequétegustaríahablarconellassitienesalgúnobjetivoconcretocomoencontraraunsocioparaunproyectoindícaloaquí.'].$t,
+      hablar: user['gsx$sobrequétegustaríahablarconellassitienesalgúnobjetivoconcretocomoencontraraunsocioparaunproyectoindícaloaquí.'].$t,
       j: user['gsx$cuáleslamejorformadeponerseencontactocontigoe-mailfacebooktwitterlinkedinpáginapersonal...'].$t,
       k: user['gsx$sieresdemadridpodríasalojarentucasaaalguienquevengaalafiestadesdefuera'].$t,
       l: user['gsx$eresvegetarianoveganootienesalgunaalergiaalimentariaquedebamosconocer'].$t
     })
   })
 
+  users.sort((a, b) => a.name.localeCompare(b.name))
+
   return users
 }
-
-const CurrentUser = (props) => (
-  <div className="CurrentUser">
-    <h1>{props.user.name}</h1>
-    {props.user.email &&
-      <p>Email: {props.user.email}</p>
-    }
-    {props.user.web &&
-      <p>Web: <a href={'http://' + props.user.web} target="_blank">{props.user.web}</a></p>
-    }
-    {props.user.residencia &&
-      <p>Lugar de residencia: {props.user.residencia}</p>
-    }
-    {props.user.descripcion &&
-      <div className="CurrentUser-answer">
-        <h3>Cuéntanos sobre ti</h3>
-        <p>{props.user.descripcion}</p>
-      </div>
-    }
-    {props.user.conocer &&
-      <div className="CurrentUser-answer">
-        <h3>¿Qué tipo de personas te gustaría conocer?</h3>
-        <p>{props.user.conocer}</p>
-      </div>
-    }
-  </div>
-)
 
 class App extends Component {
   constructor(props) {
@@ -92,11 +69,14 @@ class App extends Component {
           </h2>
           <ul>
             {this.state.users.map( (user, key) =>
-              <li key={key} onClick={this.selectUser.bind(this, user.name)}>{user.name}</li>
+              <li key={key} onClick={this.selectUser.bind(this, user.name)} className={this.state.currentUser.name === user.name ? 'UsersList-selected' : ''}>{user.name}</li>
             )}
           </ul>
         </div>
-        <CurrentUser user={this.state.currentUser} />
+        <div className="Content">
+          <CurrentUser user={this.state.currentUser} />
+          <Footer />
+        </div>
       </div>
     );
   }

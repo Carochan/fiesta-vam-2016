@@ -1,0 +1,25 @@
+.CurrentUser{
+  padding: 1rem 2rem;
+  max-width: 760px;
+}
+
+.CurrentUser h3{
+}
+
+.CurrentUser p{
+  font-weight: 100;
+  line-height: 1.6em;
+}
+
+.CurrentUser-answer{
+  margin-top: 4rem;
+}
+
+.CurrentUser-meta{
+  display: flex;
+}
+
+.CurrentUser-avatar{
+  margin-right: 1rem;
+  border-radius: 50%;
+}

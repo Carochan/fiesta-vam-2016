@@ -3,6 +3,12 @@
   display: flex;
 }
 
+.Content{
+  height: 100%;
+  overflow-y: scroll;
+  flex: 1;
+}
+
 .UsersList{
   height: 100%;
   padding: 1em 0;
@@ -33,13 +39,7 @@
   content: ' ';
 }
 
-.CurrentUser{
-  height: 100%;
-  overflow-y: scroll;
-  flex: 1;
-  padding: 1em 2em;
-}
-
-.CurrentUser-answer{
-  margin-top: 3rem;
+.UsersList-selected{
+  font-weight: bold;
+  background-color: #ddd;
 }
