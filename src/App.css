@@ -1,0 +1,43 @@
+.App{
+  height: 100vh;
+  display: flex;
+}
+
+.UsersList{
+  height: 100%;
+  padding: 1em 0;
+  overflow-y: scroll;
+  border-right: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.UsersList li{
+  padding: .5em 1rem;
+}
+
+.UsersList li:hover{
+  cursor: pointer;
+  background-color: #ddd;
+}
+
+.UsersList-header{
+  padding: 0 1rem;
+  font-weight: normal;
+}
+
+.UsersList-header small{
+  font-size: .6em;
+}
+
+.UsersList-header small::before{
+  content: ' ';
+}
+
+.CurrentUser{
+  flex: 1;
+  padding: 1em 2em;
+}
+
+.CurrentUser-answer{
+  margin-top: 3rem;
+}
